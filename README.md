@@ -162,7 +162,7 @@ cat flag.txt
 **Flag:**
 
 ```
-THM{this_is_the_way_step_inside_jNu8uJ9tvKfH1n48}
+THM{this_is_the_way_step_inside_///////////////}
 ```
 
 ---
@@ -195,4 +195,3 @@ Multi-threaded script to capture live SQL queries from MySQL `information_schema
 **TryHackMe:** [https://tryhackme.com/p/mhsn1](https://tryhackme.com/p/mhsn1)
 
 **Keywords:** tryhackme rabbit hole writeup, mysql processlist exploit, second-order sql injection, ethical hacking walkthrough, capture the flag sql injection, offensive enumeration tutorial
->>>>>>> 001d327 (Final polished Rabbit Hole writeup)
