@@ -162,7 +162,7 @@ cat flag.txt
 **Flag:**
 
 ```
-THM{this_is_the_way_step_inside_///////////////}
+THM{this_is_the_way_step_inside_jNu8uJ9tvKfH1n48}
 ```
 
 ---
