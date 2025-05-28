@@ -1,18 +1,19 @@
-# RabbitHole-THM-Writeup
-TryHackMe Rabbit Hole SQLi CTF Walkthrough with Live Query Capture via Processlist
+# TryHackMe: Rabbit Hole Walkthrough — Full Exploit & Capture-the-Flag Guide
 
+## 🔍 Challenge Overview
 
+**Platform:** TryHackMe  
+**Room Name:** Rabbit Hole  
+**Category:** Web Exploitation, SQL Injection, Enumeration, Processlist Abuse  
+**Difficulty:** Intermediate  
 
+**Keywords for SEO:** tryhackme rabbit hole writeup, second-order sqli, processlist mysql exploit, ssh login sql injection, sql injection challenge solution, CTF walkthrough rabbit hole, information_schema processlist attack, MySQL md5 password capture, ethical hacking SQLi lab
 
-
-
+> This is a complete, step-by-step professional walkthrough to solve the "Rabbit Hole" room on TryHackMe. It includes command-line tools, Python automation scripts, payloads, and final shell access to capture the flag.
 
 ---
 
-## 🔗 Author Info
+## 🛠 Step 1: Initial Reconnaissance
 
-- 💻 GitHub: [mhsn1](https://github.com/mhsn1)
-- 🌐 TryHackMe: [tryhackme.com/p/mhsn1](https://tryhackme.com/p/mhsn1)
-- 🔒 LinkedIn: [linkedin.com/in/mohsin-arif](https://www.linkedin.com/in/mohsin-arif)
-
-> If you liked this writeup, consider giving the repo a ⭐ star!
+```bash
+nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
