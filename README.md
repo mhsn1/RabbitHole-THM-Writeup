@@ -18,13 +18,4 @@
 ```bash
 nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
 
-Discovered Open Ports:
 
-22/tcp (SSH)
-
-80/tcp (HTTP)
-
-Visit:
-
-```bash
-http://10.10.173.12
