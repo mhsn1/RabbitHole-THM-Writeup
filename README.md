@@ -7,7 +7,6 @@
 **Category:** Web Exploitation, SQL Injection, Enumeration, Processlist Abuse
 **Difficulty:** Intermediate
 
-**Keywords for SEO:** tryhackme rabbit hole writeup, second-order sqli, processlist mysql exploit, ssh login sql injection, sql injection challenge solution, CTF walkthrough rabbit hole, information\_schema processlist attack, MySQL md5 password capture, ethical hacking SQLi lab
 
 > This is a complete, step-by-step professional walkthrough to solve the "Rabbit Hole" room on TryHackMe. It includes command-line tools, Python automation scripts, payloads, and final shell access to capture the flag.
 
@@ -17,12 +16,6 @@
 
 ```bash
 nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
-
-
-
-
-
-
 ```
 
 **Discovered Open Ports:**
