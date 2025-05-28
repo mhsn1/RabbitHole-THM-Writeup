@@ -17,12 +17,12 @@
 
 ```bash
 nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
-<<<<<<< HEAD
 
 
 
 
-=======
+
+
 ```
 
 **Discovered Open Ports:**
