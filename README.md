@@ -177,9 +177,11 @@ THM{this_is_the_way_step_inside_jNu8uJ9tvKfH1n48}
 
 ### `sqli_automation.py`
 
+Simulates a manual `SQL injection login flow` and prints the full page response for inspection.
+
 ### `sqli_automate2.py`
 
-Automates 16-character chunked SQL data extraction using SUBSTR.
+Automates 16-character chunked SQL data extraction using `SUBSTR`.
 
 ### `processlist_extractor.py`
 
