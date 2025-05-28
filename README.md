@@ -25,5 +25,6 @@ Discovered Open Ports:
 80/tcp (HTTP)
 
 Visit:
+
 ```bash
 http://10.10.173.12
