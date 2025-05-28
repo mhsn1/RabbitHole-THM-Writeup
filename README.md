@@ -8,7 +8,7 @@
 **Difficulty:** Intermediate
 
 
-> This is a complete, step-by-step professional walkthrough to solve the "Rabbit Hole" room on TryHackMe. It includes command-line tools, Python automation scripts, payloads, and final shell access to capture the flag.
+> This is a complete, step-by-step walkthrough to solve the "Rabbit Hole" room on TryHackMe. It includes command-line tools, Python automation scripts, payloads, and final shell access to capture the flag.
 
 ---
 
