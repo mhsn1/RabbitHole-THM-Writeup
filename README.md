@@ -17,8 +17,5 @@
 
 ```bash
 nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
----
-## 🛠 Step 1: Initial Reconnaissance
 
-```bash
-nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
+
