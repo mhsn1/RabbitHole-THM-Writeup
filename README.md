@@ -143,7 +143,7 @@ ssh admin@10.10.173.12
 **Password:**
 
 ```
-fEeFBqOXBOLmjpTt0B3LNpuwlr7mJxI9dR8kgTpbOQcLlvgmoCt35qogicf8ao0Q
+fEeFBqOXBOLmjpTt0B3LNpuwlr7---------------------------
 ```
 
 ---
@@ -158,7 +158,7 @@ cat flag.txt
 **Flag:**
 
 ```
-THM{this_is_the_way_step_inside_jNu8uJ9tvKfH1n48}
+THM{**********************************************}
 ```
 
 ---
