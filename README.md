@@ -148,7 +148,7 @@ fEeFBqOXBOLmjpTt0B3LNpuwlr7---------------------------
 
 ---
 
-## 🏁 Step 9: Capture the Flag
+##  Step 9: Capture the Flag
 
 ```bash
 ls
